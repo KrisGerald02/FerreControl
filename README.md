@@ -16,7 +16,7 @@ El sistema cubrirá la **administración completa** de la información de **Clie
 
 ---
 
-## ✨ Funcionalidades Clave (Requerimientos Funcionales)
+##  Funcionalidades Clave (Requerimientos Funcionales)
 
 El sistema implementará módulos esenciales de gestión:
 
@@ -27,7 +27,7 @@ El sistema implementará módulos esenciales de gestión:
 
 ---
 
-## 💻 Arquitectura y Recursos
+##  Arquitectura y Recursos
 
 Este proyecto se está desarrollando como parte de la asignatura **Metodología y Programación Orientada a Objetos 1** de la Universidad Americana.
 
@@ -46,7 +46,7 @@ Las entidades principales que componen el modelo de negocio son:
 
 ---
 
-## 👤 Actores del Sistema
+##  Actores del Sistema
 
 | Actor / Usuario | Rol Principal |
 | :--- | :--- |
@@ -56,7 +56,7 @@ Las entidades principales que componen el modelo de negocio son:
 
 ---
 
-## 👥 Equipo de Desarrollo
+##  Equipo de Desarrollo
 
  Nombre Completo | Rol |
 | :--- | :--- |
