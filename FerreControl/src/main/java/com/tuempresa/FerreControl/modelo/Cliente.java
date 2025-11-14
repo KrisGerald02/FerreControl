@@ -5,6 +5,13 @@ import org.openxava.annotations.*;
 import lombok.*;
 
 @Entity @Getter @Setter
+@View(
+        members =
+                "nombre;" +
+                        "telefono;" +
+                        "direccion;" +
+                        "tipoCliente;"
+)
 public class Cliente {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

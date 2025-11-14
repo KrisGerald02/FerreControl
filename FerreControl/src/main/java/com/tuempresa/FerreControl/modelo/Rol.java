@@ -4,6 +4,11 @@ import org.openxava.annotations.*;
 import lombok.*;
 
 @Entity @Getter @Setter
+@View(
+        members =
+                "nombre;" +
+                        "descripcion;"
+)
 public class Rol {
 
     @Id @Column(length=20)

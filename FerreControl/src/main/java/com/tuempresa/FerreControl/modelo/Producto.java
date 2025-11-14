@@ -7,6 +7,14 @@ import org.openxava.annotations.*;
 import lombok.*;
 
 @Entity @Getter @Setter
+@View(
+        members =
+                "nombre;" +
+                        "categoria;" +
+                        "precioVenta;" +
+                        "stock;" +
+                        "unidadMedida;"
+)
 public class Producto {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

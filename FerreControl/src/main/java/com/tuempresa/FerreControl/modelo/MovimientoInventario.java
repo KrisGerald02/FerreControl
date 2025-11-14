@@ -5,6 +5,14 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity @Getter @Setter
+@View(
+        members =
+                "fechaHora;" +
+                        "producto;" +
+                        "tipo;" +
+                        "cantidad;" +
+                        "observacion;"
+)
 public class MovimientoInventario {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,6 +5,13 @@ import org.openxava.annotations.*;
 import lombok.*;
 
 @Entity @Getter @Setter
+@View(
+        members =
+                "nombre;" +
+                        "password;" +
+                        "rol"
+)
+
 public class Usuario {
 
     @Id @Column(length=20)
