@@ -16,8 +16,8 @@ public class MovimientoInventario {
     @DescriptionsList(descriptionProperties="nombre")
     private Producto producto; // Relación N:1 con Producto
 
-    @Column(length=50) @Required
-    private String tipo; // Tipo: Entrada o Salida (E/S)
+    @Enumerated(EnumType.STRING) @Required
+    private TipoMovimiento tipo; // Tipo: Entrada o Salida (E/S)
 
     private int cantidad;
 
