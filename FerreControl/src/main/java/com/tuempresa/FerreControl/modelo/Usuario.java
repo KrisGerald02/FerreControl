@@ -9,9 +9,8 @@ import lombok.*;
         members =
                 "nombre;" +
                         "password;" +
-                        "rol"
+                        "rol;"
 )
-
 public class Usuario {
 
     @Id @Column(length=20)

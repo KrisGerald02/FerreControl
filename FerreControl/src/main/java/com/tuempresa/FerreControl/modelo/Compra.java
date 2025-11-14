@@ -10,7 +10,9 @@ import java.util.Collection;
 @View(
         members =
                 "fecha;" +
-                        ""
+                "proveedor;" +
+                "detalleCompra;" +
+                "total;"
 )
 public class Compra {
 

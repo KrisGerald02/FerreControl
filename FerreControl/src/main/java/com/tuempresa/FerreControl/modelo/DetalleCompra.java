@@ -13,7 +13,6 @@ public class DetalleCompra {
     private int idDetalleCompra;
 
     @ManyToOne(fetch = FetchType.LAZY) @Required
-    @Hidden
     @JoinColumn(name="COMPRA_idCompra", nullable=false)
     private com.tuempresa.FerreControl.modelo.Compra compra; // Relación N:1 con Compra (FK)
 

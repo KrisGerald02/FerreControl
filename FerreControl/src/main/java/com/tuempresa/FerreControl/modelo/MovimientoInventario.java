@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
                         "producto;" +
                         "tipo;" +
                         "cantidad;" +
-                        "observacion;"
+                        "observacion"
 )
 public class MovimientoInventario {
 

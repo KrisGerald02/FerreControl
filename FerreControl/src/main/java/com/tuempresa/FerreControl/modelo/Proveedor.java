@@ -9,8 +9,7 @@ import lombok.*;
         members =
                 "nombre;" +
                         "telefono;" +
-                        "direccion;" +
-                        "compras;"
+                        "direccion;"
 )
 public class Proveedor {
 

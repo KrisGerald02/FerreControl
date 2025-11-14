@@ -13,7 +13,7 @@ import lombok.*;
                         "categoria;" +
                         "precioVenta;" +
                         "stock;" +
-                        "unidadMedida;"
+                        "unidadMedida"
 )
 public class Producto {
 
