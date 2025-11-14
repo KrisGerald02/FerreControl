@@ -1,16 +1,17 @@
+
 package com.tuempresa.FerreControl.modelo;
 
 import javax.persistence.*;
+import javax.ws.rs.DefaultValue;
+
 import org.openxava.annotations.*;
 import lombok.*;
 
 @Entity @Getter @Setter
-@View(
-    members =
-        "nombre;" +
-        "telefono;" +
-        "direccion;" +
-        "tipoCliente;"
+@View(members=
+        "nombre; telefono; direccion;" +
+                "estado;" +
+                "advertencia"
 )
 public class Cliente {
 
@@ -26,7 +27,14 @@ public class Cliente {
     @Column(length=255)
     private String direccion;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @DescriptionsList(descriptionProperties="nombre")
-    private Cliente tipoCliente;
+    @Enumerated(EnumType.STRING)
+    @Required
+    @DefaultValue("Activo")
+    private EstadoCliente estado;
+
+    @ReadOnly
+    @Stereotype("TEXT")
+    @LabelFormat(LabelFormatType.NO_LABEL)
+    @DefaultValue("NOTA IMPORTANTE: No es común borrar clientes del maestro.\nUse el estado Inactivo en lugar de eliminarlos.")
+    private String advertencia;
 }
