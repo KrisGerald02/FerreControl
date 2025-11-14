@@ -18,4 +18,8 @@ public class Proveedor {
 
     @Column(length=255)
     private String direccion;
+
+    //  Relación inversa para que OpenXava maneje bien proveedor - compra
+    @OneToMany(mappedBy="proveedor")
+    private java.util.Collection<Compra> compras;
 }
