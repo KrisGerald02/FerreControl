@@ -5,7 +5,6 @@ import org.openxava.annotations.*;
 import lombok.*;
 
 @Entity @Getter @Setter
-//
 @View(
         members =
             "nombre;" +

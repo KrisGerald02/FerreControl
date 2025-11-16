@@ -2,11 +2,20 @@ package com.tuempresa.FerreControl.modelo;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.openxava.annotations.*;
 import lombok.*;
 
 @Entity @Getter @Setter
+@View(
+    members =
+        "nombre;" +
+        "telefono;" +
+        "direccion;"
+
+)
 public class Proveedor {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +24,8 @@ public class Proveedor {
     @Column(length=20) @Required
     private String nombre;
 
-    @Max(8)
+    @Size(max=8)
+    @Pattern(regexp = "\\d{8}", message = "El telefono debe contener exactamente 8 digitos.")
     @Column(length=8)
     private String telefono;
 
