@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 public class MovimientoInventario {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
     private int idMovimiento;
 
     private LocalDateTime fechaHora;

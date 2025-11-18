@@ -2,6 +2,8 @@
 package com.tuempresa.FerreControl.modelo;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.ws.rs.DefaultValue;
 
 import org.openxava.annotations.*;
@@ -10,8 +12,8 @@ import lombok.*;
 @Entity @Getter @Setter
 @View(members=
         "nombre; telefono; direccion;" +
-                "estado;" +
-                "advertencia"
+                "estado;" /*+
+                "advertencia"*/
 )
 public class Cliente {
 
@@ -21,7 +23,9 @@ public class Cliente {
     @Column(length=50) @Required
     private String nombre;
 
-    @Column(length=15)
+    @Size(max=8)
+    @Pattern(regexp = "\\d{8}", message = "El telefono debe contener exactamente 8 digitos.")
+    @Column(length=8)
     private String telefono;
 
     @Column(length=255)
