@@ -24,6 +24,9 @@ public class Producto {
     private double precioVenta;
 
     @Min(0)
+    private double iva;
+
+    @Min(0)
     private int stock;
 
     @Column(length=20)

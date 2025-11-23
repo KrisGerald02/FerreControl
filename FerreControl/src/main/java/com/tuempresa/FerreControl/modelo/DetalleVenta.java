@@ -2,7 +2,7 @@ package com.tuempresa.FerreControl.modelo;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-
+import com.tuempresa.FerreControl.modelo.Producto;
 import com.tuempresa.FerreControl.modelo.Producto;
 import com.tuempresa.FerreControl.modelo.Venta;
 import org.openxava.annotations.*;
@@ -27,10 +27,22 @@ public class DetalleVenta {
 
     private double precio; // Precio unitario al momento de la venta
 
-    // Subtotal calculado automáticamente: cantidad * precio
+    @Min(0)
+    private double iva;
+
+    // Subtotal : cantidad * precio
     @Stereotype("MONEY")
     @Depends("cantidad, precio")
     public double getSubtotal() {
         return cantidad * precio;
     }
+
+    //Total
+    // Subtotal : cantidad * precio
+    @Stereotype("MONEY")
+    @Depends("cantidad, precio")
+    public double getTotal() {
+        return cantidad * precio + iva;
+    }
+
 }
