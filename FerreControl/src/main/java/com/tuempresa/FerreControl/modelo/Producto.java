@@ -29,6 +29,14 @@ public class Producto {
     @Min(0)
     private int stock;
 
+
+    @Min(0)
+    private int stockMinimo;
+
+
+    @Min(0)
+    private int stockMaximo;
+
     @Column(length=20)
     private String unidadMedida;
 }
