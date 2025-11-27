@@ -29,10 +29,9 @@ public class Producto {
     @Min(0)
     private int stock;
 
-
+    //add new stock the user could input an specific range
     @Min(0)
     private int stockMinimo;
-
 
     @Min(0)
     private int stockMaximo;
