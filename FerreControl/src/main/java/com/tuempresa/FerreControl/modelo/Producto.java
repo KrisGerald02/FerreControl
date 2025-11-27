@@ -31,4 +31,10 @@ public class Producto {
 
     @Column(length=20)
     private String unidadMedida;
+
+    @Transient
+    public EstadoStock getEstadoStock() {
+        return stock > 0 ? EstadoStock.EN_STOCK : EstadoStock.SIN_STOCK;
+    }
+
 }
