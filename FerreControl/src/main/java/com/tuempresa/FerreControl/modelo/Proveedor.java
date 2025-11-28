@@ -21,8 +21,11 @@ public class Proveedor {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProveedor;
 
-    @Column(length=20) @Required
+    @Column(length=20, unique = true) @Required
     private String nombre;
+
+    @Column(length=20, unique = true) @Required
+    private String correo;
 
     @Size(max=8)
     @Pattern(regexp = "\\d{8}", message = "El telefono debe contener exactamente 8 digitos.")

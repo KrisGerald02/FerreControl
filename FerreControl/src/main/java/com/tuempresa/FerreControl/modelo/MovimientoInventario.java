@@ -22,6 +22,7 @@ public class MovimientoInventario {
 
     private int cantidad;
 
+    @Hidden
     @Column(length=255)
     private String observacion;
 }

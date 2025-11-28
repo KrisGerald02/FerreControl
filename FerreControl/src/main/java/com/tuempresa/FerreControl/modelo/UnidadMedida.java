@@ -7,5 +7,6 @@ public enum UnidadMedida {
     Metro,
     Barril,
     Cubeta,
-    Kilogramo
+    Kilogramo,
+    Lamina
 }
