@@ -55,4 +55,7 @@ public class Cliente {
     @DefaultValue("Activo")
     private EstadoCliente estado;
 
+    public String getNombreCompleto() {
+        return nombres + " " + apellidos;
+    }
 }

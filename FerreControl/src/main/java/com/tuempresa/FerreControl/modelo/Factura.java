@@ -1,78 +1,88 @@
 package com.tuempresa.FerreControl.modelo;
 
-import lombok.*;
-import org.openxava.annotations.*;
+import java.math.*;
+import java.time.*;
+import java.util.*;
+
 import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.time.LocalDate;
+
+import com.tuempresa.FerreControl.modelo.Cliente;
+import com.tuempresa.FerreControl.modelo.DetalleFactura;
+import org.openxava.annotations.*;
+import org.openxava.model.*;
 
 @Entity
-@Getter @Setter
-@View(
-        members =
-                "datosFactura {" +
-                        "    numeroFactura; fecha; tipoPago;" +
-                        "}" +
-                        "venta;" +
-                        "cliente;" +
-                        "totales {" +
-                        "    subtotal; iva; total;" +
-                        "}"
-)
-public class Factura {
+@View(name="SinDetalles", members="anyo, numero, fecha, cliente")
+public class Factura extends Identifiable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idFactura;
+    @Column(length=4)
+    private int anyo;
 
-    // Número de factura único
-    @Column(length = 20, unique = true)
+    @Column(length=6)
+    private int numero;
+
     @Required
-    @Stereotype("LABEL")
-    private String numeroFactura;
+    private LocalDate fecha;
 
-    // Fecha de emisión
-    @Required
-    private LocalDate fecha = LocalDate.now();
+    @ManyToOne(fetch=FetchType.LAZY)
+    // SOLUCIÓN AL ERROR: Le decimos a OpenXava qué campo mostrar del Cliente
+    @DescriptionsList(descriptionProperties="nombreCompleto")
+    private Cliente cliente; // Referencia al cliente
 
-    // Tipo de pago o comprobante adicional
-    @Column(length=30)
-    private String tipoPago;
+    @ElementCollection
+    @ListProperties("producto.descripcion, cantidad, precio, importe")
+    private Collection<DetalleFactura> detalles;
 
-    // Relación 1:1 con Venta
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "VENTA_idVenta", nullable = false)
-    @Required
-    @ReferenceView("Simple")
-    private Venta venta;
+    @Money
+    private BigDecimal importeTotal;
 
-    // Cliente derivado de la venta
-    @ManyToOne(fetch = FetchType.LAZY)
-    @DescriptionsList(descriptionProperties = "nombres, apellidos")
-    @ReadOnly
+    // Getters y Setters
+
+    public int getAnyo() {
+        return anyo;
+    }
+
+    public void setAnyo(int anyo) {
+        this.anyo = anyo;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
     public Cliente getCliente() {
-        return venta != null ? venta.getCliente() : null;
+        return cliente;
     }
 
-    // Subtotal deriva de la venta
-    @ReadOnly
-    @Stereotype("MONEY")
-    public double getSubtotal() {
-        return venta != null ? venta.getTotal() : 0;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    // IVA calculado automáticamente (15% ejemplo)
-    @ReadOnly
-    @Stereotype("MONEY")
-    public double getIva() {
-        return getSubtotal() * 0.15;
+    public Collection<DetalleFactura> getDetalles() {
+        return detalles;
     }
 
-    // Total final
-    @ReadOnly
-    @Stereotype("MONEY")
-    public double getTotal() {
-        return getSubtotal() + getIva();
+    public void setDetalles(Collection<DetalleFactura> detalles) {
+        this.detalles = detalles;
+    }
+
+    public BigDecimal getImporteTotal() {
+        return importeTotal;
+    }
+
+    public void setImporteTotal(BigDecimal importeTotal) {
+        this.importeTotal = importeTotal;
     }
 }
-
