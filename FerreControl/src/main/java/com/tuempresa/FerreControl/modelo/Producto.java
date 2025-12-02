@@ -11,9 +11,11 @@ import lombok.*;
     members =
         "nombre;" +
         "categoria;" +
+        "marca;"+
         "precioVenta, iva;" +
         "stock, stockMinimo, stockMaximo;" +
-        "unidadMedida, estadoStock;"
+        "unidadMedida, estadoStock;"+
+        "imagen;"
 )
 public class Producto {
 

@@ -27,9 +27,12 @@
         <band height="285">
 
             <!-- Logo -->
+            <!-- inti -->
+            <!-- <![CDATA["C:/Users/intim/Downloads/logo_ferreteria.jpg"]]> -->
+            <!-- <![CDATA["C:\Users\geral\Downloads\logo_ferreteria.jpg"]]> -->
             <image>
                 <reportElement x="150" y="0" width="61" height="60"/>
-                <imageExpression class="java.lang.String"><![CDATA["C:/Users/intim/Downloads/logo_ferreteria.jpg"]]></imageExpression>
+                <imageExpression class="java.lang.String"><![CDATA["C:\Users\geral\Downloads\logo_ferreteria.jpg"]]></imageExpression>
             </image>
 
             <!-- Nombre ferretería -->

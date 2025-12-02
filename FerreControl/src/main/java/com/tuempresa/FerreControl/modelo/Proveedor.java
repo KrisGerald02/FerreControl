@@ -12,8 +12,8 @@ import lombok.*;
 @View(
     members =
         "nombre;" +
-        "telefono;" +
-        "direccion;"
+        "correo,telefono;" +
+        "departamento,direccion;"
 
 )
 public class Proveedor {
