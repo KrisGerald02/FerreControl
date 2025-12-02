@@ -55,10 +55,4 @@ public class Cliente {
     @DefaultValue("Activo")
     private EstadoCliente estado;
 
-    // Advertencia de uso: solo lectura, se muestra como texto informativo
-    @ReadOnly
-    @Stereotype("TEXT")
-    @LabelFormat(LabelFormatType.NO_LABEL)
-    @DefaultValue("{Cliente.advertencia}") // i18n
-    private String advertencia;
 }

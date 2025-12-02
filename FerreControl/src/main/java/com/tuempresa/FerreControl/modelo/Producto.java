@@ -28,6 +28,9 @@ public class Producto {
     @Required
     private CategoriaProducto categoria;
 
+    @Column(length=20) @Required
+    private String marca;
+
     @Min(0)
     private double precioVenta;
 
@@ -52,4 +55,7 @@ public class Producto {
     @Required
     private EstadoStock estadoStock;
 
+    @Files
+    @Column(length = 32)
+    String imagen;
 }

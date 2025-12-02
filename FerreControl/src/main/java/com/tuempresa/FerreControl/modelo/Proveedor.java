@@ -32,8 +32,12 @@ public class Proveedor {
     @Column(length=8)
     private String telefono;
 
+    @Column(length=20)
+    private String departamento;
+
     @Column(length=150)
     private String direccion;
+
 
     // 1..* para que OpenXava maneje bien proveedor - compra
     @OneToMany(mappedBy="proveedor")
