@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN"
+        "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="Productos" language="java"
+              pageWidth="595" pageHeight="842" columnWidth="555"
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
+              whenNoDataType="AllSectionsNoDetail">
+
+    <!-- Parámetros: mismos nombres que en PrintProductAction -->
+    <parameter name="idProducto"    class="java.lang.Integer"/>
+    <parameter name="nombre"        class="java.lang.String"/>
+    <parameter name="categoria"     class="java.lang.String"/>
+    <parameter name="precioVenta"   class="java.lang.Double"/>
+    <parameter name="iva"           class="java.lang.Double"/>
+    <parameter name="stock"         class="java.lang.Integer"/>
+    <parameter name="stockMinimo"   class="java.lang.Integer"/>
+    <parameter name="stockMaximo"   class="java.lang.Integer"/>
+    <parameter name="unidadMedida"  class="java.lang.String"/>
+    <parameter name="estadoStock"   class="java.lang.String"/>
+
+    <background>
+        <band/>
+    </background>
+
+    <title>
+        <band height="285">
+
+            <!-- Logo -->
+            <image>
+                <reportElement x="150" y="0" width="61" height="60"/>
+                <imageExpression class="java.lang.String"><![CDATA["C:/Users/intim/Downloads/logo_ferreteria.jpg"]]></imageExpression>
+            </image>
+
+            <!-- Nombre ferretería -->
+            <staticText>
+                <reportElement x="220" y="20" width="200" height="34"/>
+                <textElement>
+                    <font size="15" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Ferreteria Vanessa]]></text>
+            </staticText>
+
+            <!-- Título sección -->
+            <staticText>
+                <reportElement x="8" y="80" width="200" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Detalles del producto:]]></text>
+            </staticText>
+
+            <!-- Campos con parámetros -->
+            <textField>
+                <reportElement x="9" y="120" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Id: " + $P{idProducto}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="11" y="150" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Nombre: " + $P{nombre}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="10" y="180" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Categoria: " + $P{categoria}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="10" y="210" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Precio venta: " + $P{precioVenta}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="10" y="240" width="300" height="20"/>
+                <textFieldExpression><![CDATA["I.V.A: " + $P{iva}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="210" y="120" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Stock: " + $P{stock}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="210" y="150" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Stock mínimo: " + $P{stockMinimo}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="210" y="180" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Stock máximo: " + $P{stockMaximo}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="210" y="210" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Unidad de medida: " + $P{unidadMedida}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="210" y="240" width="300" height="20"/>
+                <textFieldExpression><![CDATA["Estado del stock: " + $P{estadoStock}]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </title>
+
+    <!-- Banda detail mínima -->
+    <detail>
+        <band height="1"/>
+    </detail>
+
+</jasperReport>

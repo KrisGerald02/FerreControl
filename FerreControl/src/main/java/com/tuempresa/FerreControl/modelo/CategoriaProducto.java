@@ -11,15 +11,13 @@ import lombok.*;
 @View(
         members =
                 "nombre;" +
-                        "descripcion;" +
-                        "imagen;" // campo de imagen visible en el formulario
+                "descripcion;"
 )
 public class CategoriaProducto {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCategoria;
 
-    @UniqueElements //verificar
     @Column(length=50, unique = true) @Required
     private String nombre;
 
