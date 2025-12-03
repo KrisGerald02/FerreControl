@@ -17,7 +17,7 @@ import java.time.LocalDate;
         "Características { categoria, marca, unidadMedida}" +
         "Fechas { fechaExpedicion, fechaVencimiento }" +
         "Inventario { stockMinimo, stockMaximo, estadoStock}" +
-        "Costo Unitario { precioVenta, iva}" +
+        "Costo Unitario { precioVenta}" +
         "imagen;"
              */
         "nombre;" +
@@ -25,7 +25,7 @@ import java.time.LocalDate;
         "categoria, marca, unidadMedida;" +
         "fechaExpedicion, fechaVencimiento;" +
         "stock, stockMinimo, stockMaximo, estadoStock;" +
-        "precioVenta, iva;" +
+        "precioVenta;" +
         "imagen;"
 )
 public class Producto {
@@ -61,11 +61,11 @@ public class Producto {
     @Min(0)
     private double precioVenta;
 
-    @Money // Le da formato de moneda (dos decimales, separador de miles, etc.)
+    /*@Money // Le da formato de moneda (dos decimales, separador de miles, etc.)
     @Column(precision = 10, scale = 2) // Asegura que el campo tenga precisión de moneda en la DB
     @DefaultStringValue("C$ ")
     @Min(0)
-    private double iva;
+    private double iva; */
 
     @Min(0)
     private int stock;

@@ -41,7 +41,6 @@ public class PrintProductAction extends JasperReportBaseAction {
         parameters.put("nombre", p.getNombre());
         parameters.put("categoria", p.getCategoria().getNombre());
         parameters.put("precioVenta", p.getPrecioVenta());
-        parameters.put("iva", p.getIva());
         parameters.put("stock", p.getStock());
         parameters.put("stockMinimo", p.getStockMinimo());
         parameters.put("stockMaximo", p.getStockMaximo());
