@@ -11,10 +11,9 @@ import lombok.*;
 @Getter @Setter
 // Vista de la entidad Cliente: se muestran todos los campos relevantes
 @View(members=
-        "cedula;" +          // ahora la cédula es clave primaria, se ve en el formulario
+        "cedula, estado;" +          // ahora la cédula es clave primaria, se ve en el formulario
                 "nombres; apellidos;" +
-                "telefono; direccion;" +
-                "estado;"
+                "telefono; direccion;"
 )
 public class Cliente {
 

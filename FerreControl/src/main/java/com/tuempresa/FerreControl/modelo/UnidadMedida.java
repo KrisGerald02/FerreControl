@@ -5,8 +5,18 @@ public enum UnidadMedida {
     Caja,
     Paquete,
     Metro,
+    Rollo,
     Barril,
+    Bolsa,
+    Libra,
+    Litros,
+    Pliego,
+    Galón,
+    Octavo,
     Cubeta,
     Kilogramo,
-    Lamina
+    Lamina,
+    m2,
+    m3
+
 }

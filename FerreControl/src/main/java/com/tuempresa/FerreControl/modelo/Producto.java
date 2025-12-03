@@ -6,16 +6,26 @@ import javax.validation.constraints.Min;
 import org.openxava.annotations.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity @Getter @Setter
 @View(
     members =
+
+            /*
+        "Nuevo Producto { nombre, descripcion }" +
+        "Características { categoria, marca, unidadMedida}" +
+        "Fechas { fechaExpedicion, fechaVencimiento }" +
+        "Inventario { stockMinimo, stockMaximo, estadoStock}" +
+        "Costo Unitario { precioVenta, iva}" +
+        "imagen;"
+             */
         "nombre;" +
-        "categoria;" +
         "descripcion;"+
-        "marca;"+
+        "categoria, marca, unidadMedida;" +
+        "fechaExpedicion, fechaVencimiento;" +
+        "stockMinimo, stockMaximo, estadoStock;" +
         "precioVenta, iva;" +
-        "stock, stockMinimo, stockMaximo;" +
-        "unidadMedida, estadoStock;"+
         "imagen;"
 )
 public class Producto {
@@ -37,6 +47,17 @@ public class Producto {
     @Column(length=20) @Required
     private String marca;
 
+    @Column(length=10)
+    @Required
+    private LocalDate fechaExpedicion;
+
+    @Column(length=10)
+    private LocalDate fechaVencimiento;
+
+
+    @Money // Le da formato de moneda (dos decimales, separador de miles, etc.)
+    @Column(precision = 10, scale = 2) // Asegura que el campo tenga precisión de moneda en la DB
+    @DefaultStringValue("C$ ") // Muestra el símbolo "C$" al iniciar la entrada (puede variar según el navegador)
     @Min(0)
     private double precioVenta;
 
