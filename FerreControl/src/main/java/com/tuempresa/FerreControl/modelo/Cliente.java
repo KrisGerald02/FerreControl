@@ -13,8 +13,8 @@ import lombok.*;
 @View(members=
         "cedula, estado;" +          // ahora la cédula es clave primaria, se ve en el formulario
                 "nombres; apellidos;" +
-                "direccion;"+
-                "telefono;"
+                "departamento, direccion;"+
+                "correo, telefono;"
 )
 public class Cliente {
 
@@ -38,8 +38,15 @@ public class Cliente {
     @Required
     private String telefono;
 
+    @Enumerated(EnumType.STRING) // Guarda el nombre (ej: MANAGUA) en la BD en lugar del índice
+    @Required
+    private DepartamentoNicaragua departamento;
+
     @Column(length=300)
     private String direccion;
+
+    @Column(length=40, unique = true) @Required
+    private String correo;
 
     // Nombres y apellidos pueden repetirse
     @Column(length=50) @Required

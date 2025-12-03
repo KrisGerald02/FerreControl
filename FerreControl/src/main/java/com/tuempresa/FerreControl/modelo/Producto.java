@@ -24,7 +24,7 @@ import java.time.LocalDate;
         "descripcion;"+
         "categoria, marca, unidadMedida;" +
         "fechaExpedicion, fechaVencimiento;" +
-        "stockMinimo, stockMaximo, estadoStock;" +
+        "stock, stockMinimo, stockMaximo, estadoStock;" +
         "precioVenta, iva;" +
         "imagen;"
 )
