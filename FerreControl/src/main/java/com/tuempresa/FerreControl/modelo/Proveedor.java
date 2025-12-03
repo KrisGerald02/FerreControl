@@ -38,7 +38,7 @@ public class Proveedor {
     @Required
     private DepartamentoNicaragua departamento;
 
-    @Column(length=150)
+    @Column(length=300)
     private String direccion;
 
 

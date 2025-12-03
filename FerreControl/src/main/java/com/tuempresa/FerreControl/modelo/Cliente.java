@@ -38,7 +38,7 @@ public class Cliente {
     @Required
     private String telefono;
 
-    @Column(length=255)
+    @Column(length=300)
     private String direccion;
 
     // Nombres y apellidos pueden repetirse
