@@ -11,6 +11,7 @@ import lombok.*;
     members =
         "nombre;" +
         "categoria;" +
+        "descripcion;"+
         "marca;"+
         "precioVenta, iva;" +
         "stock, stockMinimo, stockMaximo;" +
@@ -24,6 +25,9 @@ public class Producto {
 
     @Column(length=50) @Required
     private String nombre;
+
+    @Column(length=100)
+    private String descripcion;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @DescriptionsList(descriptionProperties="nombre")
