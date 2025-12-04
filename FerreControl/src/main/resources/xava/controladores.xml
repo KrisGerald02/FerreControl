@@ -21,11 +21,22 @@
     </controlador>
     -->
 
+    <!-- Controlador específico para el módulo Producto -->
     <controlador nombre="Producto">
+        <!-- Hereda las acciones típicas de OpenXava (new, save, delete, etc.) -->
         <hereda-de controlador="Typical"/>
+
+        <!-- Imprimir ficha detallada del producto actual -->
         <accion nombre="printDetailProduct"
                 clase="com.tuempresa.FerreControl.actions.PrintProductAction"
                 modo="detail"
+                icono="printer">
+        </accion>
+
+        <!-- Imprimir listado general de todos los productos -->
+        <accion nombre="printProductsList"
+                clase="com.tuempresa.FerreControl.actions.PrintProductsListAction"
+                modo="list"
                 icono="printer">
         </accion>
     </controlador>
