@@ -25,4 +25,9 @@ public class DetalleFactura {
         if (cantidad == null || precio == null) return BigDecimal.ZERO;
         return precio.multiply(cantidad);
     }
+
+    public String getProductoNombre() {
+        return producto != null ? producto.getNombre() : "";
+    }
+
 }

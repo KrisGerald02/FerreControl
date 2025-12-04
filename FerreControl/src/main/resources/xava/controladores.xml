@@ -60,4 +60,13 @@
         </accion>
     </controlador>
 
+    <controlador nombre="Factura">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="printInvoice"
+                clase="com.tuempresa.FerreControl.actions.PrintInvoiceAction"
+                modo="detail"
+                icono="printer">
+        </accion>
+    </controlador>
+
 </controladores>
