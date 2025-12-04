@@ -62,9 +62,18 @@
 
     <controlador nombre="Factura">
         <hereda-de controlador="Typical"/>
+
+        <!-- Factura individual -->
         <accion nombre="printInvoice"
                 clase="com.tuempresa.FerreControl.actions.PrintInvoiceAction"
                 modo="detail"
+                icono="printer">
+        </accion>
+
+        <!-- Listado general de facturas -->
+        <accion nombre="printInvoicesList"
+                clase="com.tuempresa.FerreControl.actions.PrintInvoicesListAction"
+                modo="list"
                 icono="printer">
         </accion>
     </controlador>
