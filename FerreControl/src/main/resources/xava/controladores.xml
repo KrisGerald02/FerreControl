@@ -41,4 +41,23 @@
         </accion>
     </controlador>
 
+    <!-- Controlador específico para el módulo Cliente -->
+    <controlador nombre="Cliente">
+        <hereda-de controlador="Typical"/>
+
+        <!-- Ficha detallada -->
+        <accion nombre="printDetailCustomer"
+                clase="com.tuempresa.FerreControl.actions.PrintCustomerAction"
+                modo="detail"
+                icono="printer">
+        </accion>
+
+        <!-- Listado general -->
+        <accion nombre="printCustomersList"
+                clase="com.tuempresa.FerreControl.actions.PrintCustomersListAction"
+                modo="list"
+                icono="printer">
+        </accion>
+    </controlador>
+
 </controladores>
