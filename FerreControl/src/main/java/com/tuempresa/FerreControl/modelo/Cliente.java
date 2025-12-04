@@ -34,7 +34,7 @@ public class Cliente {
     private String cedula;
 
     @Mask("####-####")
-    @Column(length=8)
+    @Column(length=9)
     @Required
     private String telefono;
 
@@ -63,4 +63,15 @@ public class Cliente {
     public String getNombreCompleto() {
         return nombres + " " + apellidos;
     }
+
+    // Nuevo: usado por el reporte de listado
+    public String getDepartamentoTexto() {
+        return departamento != null ? departamento.toString() : "";
+    }
+
+    // Nuevo: usado por el reporte de listado
+    public String getEstadoTexto() {
+        return estado != null ? estado.toString() : "";
+    }
+
 }

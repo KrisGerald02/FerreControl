@@ -1,6 +1,7 @@
 package com.tuempresa.FerreControl.modelo;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 
 import org.openxava.annotations.*;
@@ -58,7 +59,7 @@ public class Producto {
     @Money // Le da formato de moneda (dos decimales, separador de miles, etc.)
     @Column(precision = 10, scale = 2) // Asegura que el campo tenga precisión de moneda en la DB
     @DefaultStringValue("C$ ") // Muestra el símbolo "C$" al iniciar la entrada (puede variar según el navegador)
-    @Min(0)
+    @DecimalMin("0.0")
     private double precioVenta;
 
     /*@Money // Le da formato de moneda (dos decimales, separador de miles, etc.)
@@ -88,4 +89,19 @@ public class Producto {
     @Files
     @Column(length = 32)
     String imagen;
+
+    public String getCategoriaNombre() {
+        return categoria != null ? categoria.getNombre() : "";
+    }
+
+    // Devuelve la unidad de medida como texto para reportes
+    public String getUnidadMedidaTexto() {
+        return unidadMedida != null ? unidadMedida.toString() : "";
+    }
+
+    // Devuelve el estado de stock como texto para reportes (por si luego lo usamos)
+    public String getEstadoStockTexto() {
+        return estadoStock != null ? estadoStock.toString() : "";
+    }
+
 }

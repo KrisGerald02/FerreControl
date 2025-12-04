@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN"
+        "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="ClienteDetalle" language="java"
+              pageWidth="595" pageHeight="842" columnWidth="555"
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
+              whenNoDataType="AllSectionsNoDetail">
+
+    <!-- Parámetros: deben coincidir con los que envía la acción -->
+    <parameter name="cedula"        class="java.lang.String"/>
+    <parameter name="nombres"       class="java.lang.String"/>
+    <parameter name="apellidos"     class="java.lang.String"/>
+    <parameter name="nombreCompleto" class="java.lang.String"/>
+    <parameter name="departamento"  class="java.lang.String"/>
+    <parameter name="direccion"     class="java.lang.String"/>
+    <parameter name="correo"        class="java.lang.String"/>
+    <parameter name="telefono"      class="java.lang.String"/>
+    <parameter name="estado"        class="java.lang.String"/>
+
+    <background>
+        <band/>
+    </background>
+
+    <title>
+        <band height="310">
+
+            <!-- Encabezado con fondo -->
+            <rectangle>
+                <reportElement x="0" y="0" width="555" height="90"
+                               backcolor="#EEEEEE" mode="Opaque"/>
+            </rectangle>
+
+            <!-- Logo -->
+            <image>
+                <reportElement x="20" y="10" width="60" height="60"/>
+                <!-- Ajusta la ruta a tu logo -->
+                <imageExpression class="java.lang.String"><![CDATA["C:/Users/intim/Downloads/logo_ferreteria.jpg"]]></imageExpression>
+            </image>
+
+            <!-- Nombre ferretería -->
+            <staticText>
+                <reportElement x="100" y="22" width="350" height="24"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Ferretería Vanessa]]></text>
+            </staticText>
+
+            <!-- Subtítulo -->
+            <staticText>
+                <reportElement x="100" y="46" width="350" height="18"/>
+                <textElement textAlignment="Center">
+                    <font size="12" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[Ficha detallada de cliente]]></text>
+            </staticText>
+
+            <!-- Fecha emisión -->
+            <staticText>
+                <reportElement x="360" y="72" width="60" height="14"/>
+                <textElement textAlignment="Right">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Fecha:]]></text>
+            </staticText>
+            <textField pattern="dd/MM/yyyy">
+                <reportElement x="425" y="72" width="110" height="14"/>
+                <textElement>
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+
+            <!-- Línea -->
+            <line>
+                <reportElement x="0" y="95" width="555" height="1" forecolor="#999999"/>
+            </line>
+
+            <!-- Título de sección -->
+            <staticText>
+                <reportElement x="0" y="105" width="200" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Datos del cliente]]></text>
+            </staticText>
+
+            <!-- Caja principal -->
+            <rectangle>
+                <reportElement x="0" y="130" width="555" height="160"
+                               forecolor="#CCCCCC" backcolor="#FFFFFF" mode="Opaque"/>
+            </rectangle>
+
+            <!-- Subtítulo: Información general -->
+            <staticText>
+                <reportElement x="10" y="140" width="200" height="15"/>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Información general]]></text>
+            </staticText>
+
+            <!-- Cédula -->
+            <textField>
+                <reportElement x="10" y="160" width="260" height="18"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Cédula: " + $P{cedula}]]></textFieldExpression>
+            </textField>
+
+            <!-- Nombre completo -->
+            <textField>
+                <reportElement x="10" y="178" width="260" height="18"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Nombre completo: " + $P{nombreCompleto}]]></textFieldExpression>
+            </textField>
+
+            <!-- Estado -->
+            <textField>
+                <reportElement x="10" y="196" width="260" height="18"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Estado: " + $P{estado}]]></textFieldExpression>
+            </textField>
+
+            <!-- Departamento -->
+            <textField>
+                <reportElement x="10" y="214" width="260" height="18"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Departamento: " + $P{departamento}]]></textFieldExpression>
+            </textField>
+
+            <!-- Subtítulo: Contacto -->
+            <staticText>
+                <reportElement x="290" y="140" width="200" height="15"/>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Información de contacto]]></text>
+            </staticText>
+
+            <!-- Correo -->
+            <textField>
+                <reportElement x="290" y="160" width="250" height="18"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Correo: " + $P{correo}]]></textFieldExpression>
+            </textField>
+
+            <!-- Teléfono -->
+            <textField>
+                <reportElement x="290" y="178" width="250" height="18"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Teléfono: " + $P{telefono}]]></textFieldExpression>
+            </textField>
+
+            <!-- Dirección (multilínea) -->
+            <textField isStretchWithOverflow="true">
+                <reportElement x="290" y="196" width="250" height="60"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Dirección: " + $P{direccion}]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </title>
+
+    <detail>
+        <band height="1"/>
+    </detail>
+
+    <!-- Pie de página -->
+    <pageFooter>
+        <band height="30">
+            <line>
+                <reportElement x="0" y="0" width="555" height="1" forecolor="#999999"/>
+            </line>
+
+            <staticText>
+                <reportElement x="0" y="5" width="350" height="15"/>
+                <textElement>
+                    <font size="9" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[Reporte generado por el sistema FerreControl – Control de inventario y facturación]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="380" y="5" width="175" height="15"/>
+                <textElement textAlignment="Right">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de 1"]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+
+</jasperReport>

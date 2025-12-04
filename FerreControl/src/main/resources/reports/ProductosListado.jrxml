@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN"
+        "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="ProductosListado" language="java"
+              pageWidth="842" pageHeight="595" columnWidth="802"
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+
+    <style name="StockStyle">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$F{stock}.intValue() < $F{stockMinimo}.intValue()]]></conditionExpression>
+            <style forecolor="#FF0000" isBold="true"/>
+        </conditionalStyle>
+    </style>
+
+    <!-- Campos (propiedades de Producto) -->
+    <field name="idProducto"          class="java.lang.Integer"/>
+    <field name="nombre"              class="java.lang.String"/>
+    <field name="categoriaNombre"     class="java.lang.String"/>
+    <field name="marca"               class="java.lang.String"/>
+    <field name="unidadMedidaTexto"   class="java.lang.String"/>
+    <field name="stock"               class="java.lang.Integer"/>
+    <field name="stockMinimo"         class="java.lang.Integer"/>
+    <field name="stockMaximo"         class="java.lang.Integer"/>
+    <field name="precioVenta"         class="java.lang.Double"/>
+    <field name="estadoStockTexto"    class="java.lang.String"/>
+
+    <background>
+        <band/>
+    </background>
+
+    <!-- Título con logo y datos -->
+    <title>
+        <band height="140">
+
+            <!-- Fondo encabezado -->
+            <rectangle>
+                <reportElement x="0" y="0" width="802" height="95"
+                               backcolor="#EEEEEE" mode="Opaque"/>
+            </rectangle>
+
+            <!-- Logo -->
+            <image>
+                <reportElement x="20" y="10" width="60" height="60"/>
+                <imageExpression class="java.lang.String"><![CDATA["C:/Users/intim/Downloads/logo_ferreteria.jpg"]]></imageExpression>
+            </image>
+
+            <!-- Título: nombre de la ferretería -->
+            <staticText>
+                <reportElement x="100" y="18" width="550" height="24"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Ferretería Vanessa]]></text>
+            </staticText>
+
+            <!-- Subtítulo -->
+            <staticText>
+                <reportElement x="100" y="42" width="550" height="18"/>
+                <textElement textAlignment="Center">
+                    <font size="12" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[Listado general de productos]]></text>
+            </staticText>
+
+            <!-- Ubicación -->
+            <staticText>
+                <reportElement x="100" y="64" width="80" height="12"/>
+                <textElement>
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Ubicación:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="180" y="64" width="420" height="12"/>
+                <textElement>
+                    <font size="8"/>
+                </textElement>
+                <text><![CDATA[La Dalia, Matagalpa (De la Alcaldía de la Dalia media cuadra arriba)]]></text>
+            </staticText>
+
+            <!-- Teléfono -->
+            <staticText>
+                <reportElement x="100" y="78" width="80" height="12"/>
+                <textElement>
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Teléfono:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="180" y="78" width="160" height="12"/>
+                <textElement>
+                    <font size="9"/>
+                </textElement>
+                <text><![CDATA[+505 8624 4743]]></text>
+            </staticText>
+
+            <!-- Fecha alineada a la derecha -->
+            <staticText>
+                <reportElement x="620" y="72" width="80" height="15"/>
+                <textElement textAlignment="Right">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Fecha:]]></text>
+            </staticText>
+            <textField pattern="dd/MM/yyyy">
+                <reportElement x="705" y="72" width="80" height="15"/>
+                <textElement textAlignment="Left">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+
+            <!-- Línea de separación bajo el recuadro -->
+            <line>
+                <reportElement x="0" y="105" width="802" height="1" forecolor="#999999"/>
+            </line>
+
+        </band>
+    </title>
+
+    <!-- Encabezado de columnas -->
+    <columnHeader>
+        <band height="25">
+            <rectangle>
+                <reportElement x="0" y="0" width="802" height="25"
+                               backcolor="#F5F5F5" mode="Opaque"/>
+            </rectangle>
+
+            <!-- ID -->
+            <staticText>
+                <reportElement x="0" y="5" width="35" height="15"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+
+            <!-- Nombre -->
+            <staticText>
+                <reportElement x="35" y="5" width="220" height="15"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Nombre]]></text>
+            </staticText>
+
+            <!-- Categoría -->
+            <staticText>
+                <reportElement x="255" y="5" width="120" height="15"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Categoría]]></text>
+            </staticText>
+
+            <!-- Marca -->
+            <staticText>
+                <reportElement x="375" y="5" width="120" height="15"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Marca]]></text>
+            </staticText>
+
+            <!-- Unidad -->
+            <staticText>
+                <reportElement x="495" y="5" width="60" height="15"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Unidad]]></text>
+            </staticText>
+
+            <!-- Stock -->
+            <staticText>
+                <reportElement x="555" y="5" width="50" height="15"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Stock]]></text>
+            </staticText>
+
+            <!-- Stock min -->
+            <staticText>
+                <reportElement x="605" y="5" width="45" height="15"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Min]]></text>
+            </staticText>
+
+            <!-- Stock max -->
+            <staticText>
+                <reportElement x="650" y="5" width="45" height="15"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Máx]]></text>
+            </staticText>
+
+            <!-- Precio -->
+            <staticText>
+                <reportElement x="695" y="5" width="90" height="15"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Precio]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <!-- Detalle -->
+    <detail>
+        <band height="18">
+            <line>
+                <reportElement x="0" y="17" width="802" height="1" forecolor="#DDDDDD"/>
+            </line>
+
+            <!-- ID -->
+            <textField>
+                <reportElement x="0" y="2" width="35" height="14"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{idProducto}]]></textFieldExpression>
+            </textField>
+
+            <!-- Nombre -->
+            <textField>
+                <reportElement x="35" y="2" width="220" height="14"/>
+                <textElement verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+            </textField>
+
+            <!-- Categoría -->
+            <textField>
+                <reportElement x="255" y="2" width="120" height="14"/>
+                <textElement verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{categoriaNombre}]]></textFieldExpression>
+            </textField>
+
+            <!-- Marca -->
+            <textField>
+                <reportElement x="375" y="2" width="120" height="14"/>
+                <textElement verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+            </textField>
+
+            <!-- Unidad -->
+            <textField>
+                <reportElement x="495" y="2" width="60" height="14"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{unidadMedidaTexto}]]></textFieldExpression>
+            </textField>
+
+            <!-- Stock -->
+            <textField>
+                <reportElement x="555" y="2" width="50" height="14" style="StockStyle"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
+            </textField>
+
+
+            <!-- Stock min -->
+            <textField>
+                <reportElement x="605" y="2" width="45" height="14"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{stockMinimo}]]></textFieldExpression>
+            </textField>
+
+            <!-- Stock max -->
+            <textField>
+                <reportElement x="650" y="2" width="45" height="14"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{stockMaximo}]]></textFieldExpression>
+            </textField>
+
+            <!-- Precio -->
+            <textField pattern="C$ #,##0.00">
+                <reportElement x="695" y="2" width="90" height="14"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{precioVenta}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <!-- Pie -->
+    <pageFooter>
+        <band height="25">
+            <line>
+                <reportElement x="0" y="0" width="802" height="1" forecolor="#999999"/>
+            </line>
+
+            <staticText>
+                <reportElement x="0" y="5" width="450" height="15"/>
+                <textElement>
+                    <font size="9" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[Reporte de listado general de productos – FerreControl]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="600" y="5" width="202" height="15"/>
+                <textElement textAlignment="Right">
+                    <font size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de 1"]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+
+</jasperReport>
+

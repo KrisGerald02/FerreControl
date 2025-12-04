@@ -21,11 +21,66 @@
     </controlador>
     -->
 
+    <!-- Controlador específico para el módulo Producto -->
     <controlador nombre="Producto">
+        <!-- Hereda las acciones típicas de OpenXava (new, save, delete, etc.) -->
         <hereda-de controlador="Typical"/>
+
+        <!-- Imprimir ficha detallada del producto actual -->
         <accion nombre="printDetailProduct"
                 clase="com.tuempresa.FerreControl.actions.PrintProductAction"
                 modo="detail"
+                icono="printer">
+        </accion>
+
+        <!-- Imprimir listado general de todos los productos -->
+        <accion nombre="printProductsList"
+                clase="com.tuempresa.FerreControl.actions.PrintProductsListAction"
+                modo="list"
+                icono="printer">
+        </accion>
+    </controlador>
+
+    <!-- Controlador específico para el módulo Cliente -->
+    <controlador nombre="Cliente">
+        <hereda-de controlador="Typical"/>
+
+        <!-- Ficha detallada -->
+        <accion nombre="printDetailCustomer"
+                clase="com.tuempresa.FerreControl.actions.PrintCustomerAction"
+                modo="detail"
+                icono="printer">
+        </accion>
+
+        <!-- Listado general -->
+        <accion nombre="printCustomersList"
+                clase="com.tuempresa.FerreControl.actions.PrintCustomersListAction"
+                modo="list"
+                icono="printer">
+        </accion>
+    </controlador>
+
+    <controlador nombre="Factura">
+        <hereda-de controlador="Typical"/>
+
+        <!-- Factura individual -->
+        <accion nombre="printInvoice"
+                clase="com.tuempresa.FerreControl.actions.PrintInvoiceAction"
+                modo="detail"
+                icono="printer">
+        </accion>
+
+        <!-- Listado general de facturas -->
+        <accion nombre="printInvoicesList"
+                clase="com.tuempresa.FerreControl.actions.PrintInvoicesListAction"
+                modo="list"
+                icono="printer">
+        </accion>
+
+        <!-- Ventas por cliente (agrupado por cliente) -->
+        <accion nombre="printInvoicesByCustomer"
+                clase="com.tuempresa.FerreControl.actions.PrintInvoicesByCustomerAction"
+                modo="list"
                 icono="printer">
         </accion>
     </controlador>

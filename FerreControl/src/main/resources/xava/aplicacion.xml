@@ -18,7 +18,15 @@
 		<modelo nombre="Profesor"/>
 		<controlador nombre="Print"/>
 	</modulo>		
-	-->	  
-		
+	-->
+    <!-- Módulo específico para Producto -->
+    <modulo nombre="Producto">
+        <!-- Entidad JPA -->
+        <modelo nombre="Producto"/>
+
+        <!-- Controlador propio de Producto (ya hereda de Typical) -->
+        <controlador nombre="Producto"/>
+    </modulo>
+
 </aplicacion>
 
