@@ -3,6 +3,7 @@ package com.tuempresa.FerreControl.modelo;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
+import com.tuempresa.FerreControl.modelo.CategoriaProducto;
 
 import org.openxava.annotations.*;
 import lombok.*;
