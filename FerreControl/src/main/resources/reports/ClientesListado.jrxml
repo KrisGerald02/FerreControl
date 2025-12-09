@@ -7,12 +7,12 @@
               leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 
     <!-- Campos (propiedades de Cliente) -->
-    <field name="cedula"             class="java.lang.String"/>
-    <field name="nombreCompleto"     class="java.lang.String"/>
-    <field name="departamentoTexto"  class="java.lang.String"/>
-    <field name="telefono"           class="java.lang.String"/>
-    <field name="correo"             class="java.lang.String"/>
-    <field name="estadoTexto"        class="java.lang.String"/>
+    <field name="cedula"            class="java.lang.String"/>
+    <field name="nombreCompleto"    class="java.lang.String"/>
+    <field name="departamentoTexto" class="java.lang.String"/>
+    <field name="telefono"          class="java.lang.String"/>
+    <field name="correo"            class="java.lang.String"/>
+    <field name="estadoTexto"       class="java.lang.String"/>
 
     <background>
         <band/>
@@ -68,7 +68,7 @@
                 <text><![CDATA[La Dalia, Matagalpa (De la Alcaldía de la Dalia media cuadra arriba)]]></text>
             </staticText>
 
-            <!-- Teléfono ferretería -->
+            <!-- Teléfono -->
             <staticText>
                 <reportElement x="100" y="78" width="80" height="12"/>
                 <textElement>
@@ -251,7 +251,6 @@
                 <text><![CDATA[Reporte de listado general de clientes – FerreControl]]></text>
             </staticText>
 
-            <!-- Para no ver 'null' dejamos 1 fijo -->
             <textField>
                 <reportElement x="600" y="5" width="202" height="15"/>
                 <textElement textAlignment="Right">
