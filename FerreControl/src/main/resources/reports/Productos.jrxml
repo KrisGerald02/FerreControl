@@ -7,8 +7,7 @@
               leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
               whenNoDataType="AllSectionsNoDetail">
 
-    <!-- Parámetros: deben coincidir con los que envías desde la acción -->
-    <parameter name="idProducto"        class="java.lang.Integer"/>
+    <!-- Parámetros: SIN idProducto -->
     <parameter name="nombre"            class="java.lang.String"/>
     <parameter name="descripcion"       class="java.lang.String"/>
     <parameter name="categoria"         class="java.lang.String"/>
@@ -29,7 +28,7 @@
     <title>
         <band height="320">
 
-            <!-- Bloque de encabezado con fondo (aumentado de 80 a 100) -->
+            <!-- Encabezado -->
             <rectangle>
                 <reportElement x="0" y="0" width="555" height="100"
                                backcolor="#EEEEEE" mode="Opaque"/>
@@ -38,7 +37,6 @@
             <!-- Logo -->
             <image>
                 <reportElement x="20" y="10" width="60" height="60"/>
-                <!-- Ajusta la ruta a donde tengas el logo -->
                 <imageExpression class="java.lang.String"><![CDATA["C:/Users/intim/Downloads/logo_ferreteria.jpg"]]></imageExpression>
             </image>
 
@@ -60,128 +58,102 @@
                 <text><![CDATA[Ficha detallada de producto]]></text>
             </staticText>
 
-            <!-- Valor Cliente -->
+            <!-- Ubicación -->
             <staticText>
-                <reportElement x="165" y="60" width="260" height="12"/>
-                <textElement>
-                    <font size="9"/>
-                </textElement>
-                <text><![CDATA[Ferretería Vanessa]]></text>
-            </staticText>
-
-            <!-- Etiqueta Ubicación -->
-            <staticText>
-                <reportElement x="100" y="74" width="70" height="12"/>
+                <reportElement x="100" y="70" width="70" height="12"/>
                 <textElement>
                     <font size="9" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Ubicación:]]></text>
             </staticText>
-
-            <!-- Valor Ubicación -->
             <staticText>
-                <reportElement x="170" y="74" width="360" height="12"/>
+                <reportElement x="170" y="70" width="360" height="12"/>
                 <textElement>
                     <font size="8"/>
                 </textElement>
                 <text><![CDATA[La Dalia, Matagalpa (De la Alcaldía de la Dalia media cuadra arriba)]]></text>
             </staticText>
 
-            <!-- Etiqueta Teléfono -->
+            <!-- Teléfono -->
             <staticText>
-                <reportElement x="100" y="88" width="70" height="12"/>
+                <reportElement x="100" y="84" width="70" height="12"/>
                 <textElement>
                     <font size="9" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Teléfono:]]></text>
             </staticText>
-
-            <!-- Valor Teléfono -->
             <staticText>
-                <reportElement x="170" y="88" width="120" height="12"/>
+                <reportElement x="170" y="84" width="120" height="12"/>
                 <textElement>
                     <font size="9"/>
                 </textElement>
                 <text><![CDATA[+505 8624 4743]]></text>
             </staticText>
 
-            <!-- Fecha de emisión -->
+            <!-- Fecha -->
             <staticText>
-                <reportElement x="355" y="88" width="80" height="15"/>
+                <reportElement x="355" y="84" width="80" height="15"/>
                 <textElement textAlignment="Right">
                     <font size="9" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Fecha:]]></text>
             </staticText>
-
             <textField pattern="dd/MM/yyyy">
-                <reportElement x="440" y="88" width="100" height="15"/>
+                <reportElement x="440" y="84" width="100" height="15"/>
                 <textElement>
                     <font size="9"/>
                 </textElement>
-                <!-- Fecha actual del sistema -->
                 <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
             </textField>
 
-            <!-- Línea de separación (bajada a y=105) -->
+            <!-- Línea separadora -->
             <line>
                 <reportElement x="0" y="105" width="555" height="1" forecolor="#999999"/>
             </line>
 
-            <!-- Título sección -->
+            <!-- Título de sección -->
             <staticText>
-                <reportElement x="0" y="110" width="200" height="20"/>
+                <reportElement x="0" y="115" width="200" height="20"/>
                 <textElement>
                     <font size="12" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Detalles del producto]]></text>
             </staticText>
 
-            <!-- Caja que envuelve todos los datos -->
+            <!-- Caja contenedora -->
             <rectangle>
-                <reportElement x="0" y="135" width="555" height="175"
+                <reportElement x="0" y="140" width="555" height="165"
                                forecolor="#CCCCCC" backcolor="#FFFFFF" mode="Opaque"/>
             </rectangle>
 
-            <!-- Sección: Datos generales -->
+            <!-- LÍNEA VERTICAL DIVISORIA -->
+            <line>
+                <!-- x=275 parte la caja de 555 en dos columnas -->
+                <reportElement x="275" y="140" width="1" height="165" forecolor="#CCCCCC"/>
+            </line>
+
+            <!-- ===== Columna izquierda: datos generales ===== -->
+
             <staticText>
-                <reportElement x="10" y="145" width="200" height="15"/>
+                <reportElement x="10" y="150" width="200" height="15"/>
                 <textElement>
                     <font size="11" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Datos generales]]></text>
             </staticText>
 
-            <!-- Id -->
+            <!-- Nombre (resaltado) -->
             <textField>
-                <reportElement x="10" y="165" width="260" height="18"/>
+                <reportElement x="10" y="170" width="260" height="20"/>
                 <textElement>
-                    <font size="10"/>
-                </textElement>
-                <textFieldExpression><![CDATA["ID: " + $P{idProducto}]]></textFieldExpression>
-            </textField>
-
-            <!-- Nombre -->
-            <textField>
-                <reportElement x="10" y="183" width="260" height="18"/>
-                <textElement>
-                    <font size="10"/>
+                    <font size="11" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA["Nombre: " + $P{nombre}]]></textFieldExpression>
             </textField>
 
-            <!-- Descripción -->
-            <textField isStretchWithOverflow="true">
-                <reportElement x="10" y="201" width="260" height="35"/>
-                <textElement>
-                    <font size="10"/>
-                </textElement>
-                <textFieldExpression><![CDATA["Descripción: " + $P{descripcion}]]></textFieldExpression>
-            </textField>
-
             <!-- Categoría -->
             <textField>
-                <reportElement x="10" y="238" width="260" height="18"/>
+                <reportElement x="10" y="192" width="260" height="18"/>
                 <textElement>
                     <font size="10"/>
                 </textElement>
@@ -190,34 +162,62 @@
 
             <!-- Marca -->
             <textField>
-                <reportElement x="10" y="256" width="260" height="18"/>
+                <reportElement x="10" y="210" width="260" height="18"/>
                 <textElement>
                     <font size="10"/>
                 </textElement>
                 <textFieldExpression><![CDATA["Marca: " + $P{marca}]]></textFieldExpression>
             </textField>
 
-            <!-- Precio de venta destacado -->
+            <!-- Unidad de medida -->
+            <textField>
+                <reportElement x="10" y="228" width="260" height="18"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Unidad de medida: " + $P{unidadMedida}]]></textFieldExpression>
+            </textField>
+
+            <!-- Estado stock -->
+            <textField>
+                <reportElement x="10" y="246" width="260" height="18"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Estado de stock: " + $P{estadoStock}]]></textFieldExpression>
+            </textField>
+
+            <!-- Descripción -->
+            <textField isStretchWithOverflow="true">
+                <reportElement x="10" y="264" width="260" height="35"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Descripción: " + $P{descripcion}]]></textFieldExpression>
+            </textField>
+
+            <!-- ===== Columna derecha: inventario y fechas ===== -->
+
+            <staticText>
+                <reportElement x="290" y="150" width="200" height="15"/>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Inventario y precios]]></text>
+            </staticText>
+
+            <!-- Precio de venta -->
             <textField pattern="C$ #,##0.00">
-                <reportElement x="10" y="274" width="260" height="20"/>
+                <reportElement x="290" y="170" width="250" height="20"/>
                 <textElement>
                     <font size="11" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{precioVenta}]]></textFieldExpression>
             </textField>
 
-            <!-- Sección: Inventario -->
-            <staticText>
-                <reportElement x="290" y="145" width="200" height="15"/>
-                <textElement>
-                    <font size="11" isBold="true"/>
-                </textElement>
-                <text><![CDATA[Inventario]]></text>
-            </staticText>
-
-            <!-- Stock -->
+            <!-- Stock actual -->
             <textField>
-                <reportElement x="290" y="165" width="250" height="18"/>
+                <reportElement x="290" y="195" width="250" height="18"/>
                 <textElement>
                     <font size="10"/>
                 </textElement>
@@ -226,7 +226,7 @@
 
             <!-- Stock mínimo -->
             <textField>
-                <reportElement x="290" y="183" width="250" height="18"/>
+                <reportElement x="290" y="213" width="250" height="18"/>
                 <textElement>
                     <font size="10"/>
                 </textElement>
@@ -235,75 +235,53 @@
 
             <!-- Stock máximo -->
             <textField>
-                <reportElement x="290" y="201" width="250" height="18"/>
+                <reportElement x="290" y="231" width="250" height="18"/>
                 <textElement>
                     <font size="10"/>
                 </textElement>
                 <textFieldExpression><![CDATA["Stock máximo: " + $P{stockMaximo}]]></textFieldExpression>
             </textField>
 
-            <!-- Unidad de medida -->
-            <textField>
-                <reportElement x="290" y="219" width="250" height="18"/>
-                <textElement>
-                    <font size="10"/>
-                </textElement>
-                <textFieldExpression><![CDATA["Unidad de medida: " + $P{unidadMedida}]]></textFieldExpression>
-            </textField>
-
-            <!-- Estado del stock -->
-            <textField>
-                <reportElement x="290" y="237" width="250" height="18"/>
-                <textElement>
-                    <font size="10"/>
-                </textElement>
-                <textFieldExpression><![CDATA["Estado del stock: " + $P{estadoStock}]]></textFieldExpression>
-            </textField>
-
-            <!-- Sección: Fechas -->
+            <!-- Sección Fechas -->
             <staticText>
-                <reportElement x="290" y="255" width="200" height="15"/>
+                <reportElement x="290" y="249" width="200" height="15"/>
                 <textElement>
                     <font size="11" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Fechas]]></text>
             </staticText>
 
-            <!-- Fecha de expedición -->
+            <!-- Fecha expedición -->
             <textField>
-                <reportElement x="290" y="273" width="250" height="18"/>
+                <reportElement x="290" y="267" width="250" height="18"/>
                 <textElement>
                     <font size="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Fecha expedición: " + $P{fechaExpedicion}]]></textFieldExpression>
+                <textFieldExpression><![CDATA["Fecha de expedición: " + $P{fechaExpedicion}]]></textFieldExpression>
             </textField>
 
-            <!-- Fecha de vencimiento -->
+            <!-- Fecha vencimiento -->
             <textField>
-                <reportElement x="290" y="291" width="250" height="18"/>
+                <reportElement x="290" y="285" width="250" height="18"/>
                 <textElement>
                     <font size="10"/>
                 </textElement>
-                <textFieldExpression><![CDATA["Fecha vencimiento: " + $P{fechaVencimiento}]]></textFieldExpression>
+                <textFieldExpression><![CDATA["Fecha de vencimiento: " + $P{fechaVencimiento}]]></textFieldExpression>
             </textField>
 
         </band>
     </title>
 
-    <!-- Banda detail mínima -->
     <detail>
         <band height="1"/>
     </detail>
 
-    <!-- Pie de página -->
     <pageFooter>
         <band height="30">
-            <!-- Línea superior -->
             <line>
                 <reportElement x="0" y="0" width="555" height="1" forecolor="#999999"/>
             </line>
 
-            <!-- Texto descriptivo -->
             <staticText>
                 <reportElement x="0" y="5" width="350" height="15"/>
                 <textElement>
@@ -312,7 +290,6 @@
                 <text><![CDATA[Reporte generado por el sistema FerreControl – Control de inventario y facturación]]></text>
             </staticText>
 
-            <!-- Número de página fijo: Página 1 de 1 -->
             <textField>
                 <reportElement x="400" y="5" width="155" height="15"/>
                 <textElement textAlignment="Right">

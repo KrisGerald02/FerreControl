@@ -2,7 +2,7 @@ package com.tuempresa.FerreControl.modelo;
 
 import org.openxava.annotations.*;
 import org.openxava.model.Identifiable;
-
+import org.openxava.validators.ValidationException;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -62,10 +62,55 @@ public class Factura extends Identifiable {
 
     private String tipoMoneda = "C$"; // Córdobas
 
+
+
     // --------- CÁLCULO AUTOMÁTICO ---------
+    // --------- CÁLCULO AUTOMÁTICO ---------
+
     @PrePersist
+    private void prePersist() {
+        descontarStock();      // solo una vez, al crear la factura
+        recalcularImportes();  // calcula subtotal, IVA, total, vuelto
+    }
+
     @PreUpdate
-    private void calcularImportes() {
+    private void preUpdate() {
+        recalcularImportes();  // si editas algo, recalcula importes, PERO no toca stock
+    }
+
+    /**
+     * Resta del inventario la cantidad vendida en cada detalle.
+     * Solo se llama en @PrePersist.
+     */
+    private void descontarStock() {
+        if (detalles == null) return;
+
+        for (DetalleFactura d : detalles) {
+            if (d == null || d.getProducto() == null || d.getCantidad() == null) continue;
+
+            int cantidadVendida = d.getCantidad().intValue();
+            if (cantidadVendida <= 0) continue;
+
+            Producto p = d.getProducto();
+
+            if (p.getStock() < cantidadVendida) {
+                throw new ValidationException(
+                        "Stock insuficiente para el producto '" + p.getNombre() +
+                                "'. Stock actual: " + p.getStock() +
+                                ", cantidad solicitada: " + cantidadVendida
+                );
+            }
+
+            // Restar del inventario UNA sola vez
+            p.setStock(p.getStock() - cantidadVendida);
+        }
+    }
+
+    /**
+     * Solo calcula subtotal, IVA, total y vuelto.
+     * No toca el stock.
+     */
+    private void recalcularImportes() {
         if (detalles == null || detalles.isEmpty()) {
             subtotal = BigDecimal.ZERO;
             ivaCalculado = BigDecimal.ZERO;
@@ -74,7 +119,6 @@ public class Factura extends Identifiable {
             return;
         }
 
-        // Calcular subtotal
         BigDecimal total = BigDecimal.ZERO;
         for (DetalleFactura d : detalles) {
             if (d != null && d.getImporte() != null) {
@@ -83,21 +127,19 @@ public class Factura extends Identifiable {
         }
         subtotal = total.setScale(2, RoundingMode.HALF_UP);
 
-        // Calcular IVA (15%)
         BigDecimal tasaIVA = new BigDecimal("0.15");
         ivaCalculado = subtotal.multiply(tasaIVA).setScale(2, RoundingMode.HALF_UP);
 
-        // Calcular total con IVA
         importeTotal = subtotal.add(ivaCalculado).setScale(2, RoundingMode.HALF_UP);
 
-        // Calcular vuelto
         if (montoPagado != null && montoPagado.compareTo(importeTotal) >= 0) {
             vuelto = montoPagado.subtract(importeTotal).setScale(2, RoundingMode.HALF_UP);
         } else {
             vuelto = BigDecimal.ZERO;
         }
     }
-    // ------------------------------------------------
+
+
 
     // --------- GETTERS / SETTERS ---------
 
@@ -171,7 +213,7 @@ public class Factura extends Identifiable {
 
     public void setMontoPagado(BigDecimal montoPagado) {
         this.montoPagado = montoPagado;
-        calcularImportes(); // Recalcular vuelto cuando cambia el monto pagado
+        recalcularImportes(); // Recalcular vuelto cuando cambia el monto pagado
     }
 
     public BigDecimal getVuelto() {
@@ -254,4 +296,6 @@ public class Factura extends Identifiable {
         BigDecimal restante = importeTotal.subtract(montoPagado);
         return restante.compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO : restante.setScale(2, RoundingMode.HALF_UP);
     }
+
 }
+
