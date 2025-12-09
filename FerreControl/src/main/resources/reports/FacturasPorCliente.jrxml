@@ -6,38 +6,37 @@
               pageWidth="842" pageHeight="595" columnWidth="802"
               leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 
-    <!-- Campos que vienen de Factura (data source es lista de Factura) -->
-    <field name="clienteNombre"        class="java.lang.String"/>
-    <field name="numeroFactura"        class="java.lang.String"/>
-    <field name="fechaDate"            class="java.util.Date"/>
-    <field name="importeTotal"         class="java.math.BigDecimal"/>
-    <field name="importeTotalConIVA"   class="java.math.BigDecimal"/>
+    <!-- Campos que vienen de Factura -->
+    <field name="clienteNombre"  class="java.lang.String"/>
+    <field name="numeroFactura"  class="java.lang.String"/>
+    <field name="fechaDate"      class="java.util.Date"/>
+    <field name="importeTotal"   class="java.math.BigDecimal"/>
 
-    <!-- Variables para totales por cliente y total general -->
+    <!-- Totales -->
     <variable name="TotalCliente" class="java.math.BigDecimal"
               resetType="Group" resetGroup="GrupoCliente" calculation="Sum">
-        <variableExpression><![CDATA[$F{importeTotalConIVA}]]></variableExpression>
+        <variableExpression><![CDATA[$F{importeTotal}]]></variableExpression>
     </variable>
 
     <variable name="TotalGeneral" class="java.math.BigDecimal"
               resetType="Report" calculation="Sum">
-        <variableExpression><![CDATA[$F{importeTotalConIVA}]]></variableExpression>
+        <variableExpression><![CDATA[$F{importeTotal}]]></variableExpression>
     </variable>
 
-    <!-- ================= GRUPO POR CLIENTE ================= -->
+    <!-- Grupo por cliente -->
     <group name="GrupoCliente">
         <groupExpression><![CDATA[$F{clienteNombre}]]></groupExpression>
+
         <groupHeader>
-            <band height="30">
+            <band height="28">
 
                 <rectangle>
-                    <reportElement x="0" y="5" width="802" height="25"
+                    <reportElement x="0" y="4" width="802" height="24"
                                    backcolor="#F0F0F0" mode="Opaque"/>
                 </rectangle>
 
-                <!-- Nombre del cliente -->
                 <staticText>
-                    <reportElement x="10" y="8" width="80" height="15"/>
+                    <reportElement x="10" y="7" width="80" height="15"/>
                     <textElement>
                         <font size="10" isBold="true"/>
                     </textElement>
@@ -45,7 +44,7 @@
                 </staticText>
 
                 <textField>
-                    <reportElement x="90" y="8" width="500" height="15"/>
+                    <reportElement x="90" y="7" width="500" height="15"/>
                     <textElement>
                         <font size="10" isBold="true"/>
                     </textElement>
@@ -56,15 +55,14 @@
         </groupHeader>
 
         <groupFooter>
-            <band height="25">
+            <band height="24">
 
-                <!-- Total por cliente -->
                 <staticText>
                     <reportElement x="520" y="5" width="130" height="15"/>
                     <textElement textAlignment="Right">
                         <font size="9" isBold="true"/>
                     </textElement>
-                    <text><![CDATA[Total cliente (c/ IVA):]]></text>
+                    <text><![CDATA[Total cliente (C$):]]></text>
                 </staticText>
 
                 <textField pattern="C$ #,##0.00">
@@ -83,7 +81,7 @@
         <band/>
     </background>
 
-    <!-- ================= TÍTULO / ENCABEZADO ================= -->
+    <!-- TÍTULO -->
     <title>
         <band height="80">
 
@@ -135,7 +133,7 @@
         </band>
     </title>
 
-    <!-- ================= ENCABEZADO DE COLUMNAS ================= -->
+    <!-- ENCABEZADO DE COLUMNAS -->
     <columnHeader>
         <band height="20">
 
@@ -144,7 +142,6 @@
                                backcolor="#EDEDED" mode="Opaque"/>
             </rectangle>
 
-            <!-- N° factura -->
             <staticText>
                 <reportElement x="30" y="2" width="140" height="15"/>
                 <textElement>
@@ -153,41 +150,29 @@
                 <text><![CDATA[Número de factura]]></text>
             </staticText>
 
-            <!-- Fecha -->
             <staticText>
-                <reportElement x="200" y="2" width="90" height="15"/>
+                <reportElement x="220" y="2" width="90" height="15"/>
                 <textElement textAlignment="Center">
                     <font size="9" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Fecha]]></text>
             </staticText>
 
-            <!-- Monto sin IVA -->
-            <staticText>
-                <reportElement x="350" y="2" width="130" height="15"/>
-                <textElement textAlignment="Right">
-                    <font size="9" isBold="true"/>
-                </textElement>
-                <text><![CDATA[Monto]]></text>
-            </staticText>
-
-            <!-- Monto con IVA -->
             <staticText>
                 <reportElement x="520" y="2" width="130" height="15"/>
                 <textElement textAlignment="Right">
                     <font size="9" isBold="true"/>
                 </textElement>
-                <text><![CDATA[Monto c/ IVA]]></text>
+                <text><![CDATA[Monto (C$)]]></text>
             </staticText>
 
         </band>
     </columnHeader>
 
-    <!-- ================= DETALLE: cada factura ================= -->
+    <!-- DETALLE -->
     <detail>
         <band height="18">
 
-            <!-- N° factura -->
             <textField>
                 <reportElement x="30" y="2" width="140" height="14"/>
                 <textElement>
@@ -196,37 +181,26 @@
                 <textFieldExpression><![CDATA[$F{numeroFactura}]]></textFieldExpression>
             </textField>
 
-            <!-- Fecha -->
             <textField pattern="dd/MM/yyyy">
-                <reportElement x="200" y="2" width="90" height="14"/>
+                <reportElement x="220" y="2" width="90" height="14"/>
                 <textElement textAlignment="Center">
                     <font size="8"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{fechaDate}]]></textFieldExpression>
             </textField>
 
-            <!-- Monto sin IVA -->
             <textField pattern="C$ #,##0.00">
-                <reportElement x="350" y="2" width="130" height="14"/>
+                <reportElement x="520" y="2" width="130" height="14"/>
                 <textElement textAlignment="Right">
                     <font size="8"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$F{importeTotal}]]></textFieldExpression>
             </textField>
 
-            <!-- Monto con IVA -->
-            <textField pattern="C$ #,##0.00">
-                <reportElement x="520" y="2" width="130" height="14"/>
-                <textElement textAlignment="Right">
-                    <font size="8"/>
-                </textElement>
-                <textFieldExpression><![CDATA[$F{importeTotalConIVA}]]></textFieldExpression>
-            </textField>
-
         </band>
     </detail>
 
-    <!-- ================= RESUMEN GENERAL ================= -->
+    <!-- RESUMEN GENERAL -->
     <summary>
         <band height="40">
 
@@ -239,7 +213,7 @@
                 <textElement textAlignment="Right">
                     <font size="9" isBold="true"/>
                 </textElement>
-                <text><![CDATA[Total general (c/ IVA):]]></text>
+                <text><![CDATA[Total general (C$):]]></text>
             </staticText>
 
             <textField pattern="C$ #,##0.00">
